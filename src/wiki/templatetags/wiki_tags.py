@@ -200,7 +200,7 @@ def starts_with(value, arg):
     return value.startswith(arg)
 
 @register.simple_tag(takes_context=True)
-def url_replace(context, **kwargs):
+def url_querystring_replace(context, **kwargs):
     query = context['request'].GET.dict()
     query.update(kwargs)
     return urlencode(query)

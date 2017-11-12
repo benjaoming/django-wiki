@@ -3,7 +3,7 @@
 {% if is_paginated %}
 <ul class="pagination">
     {% if page_obj.has_previous %}
-        <li><a class="prev btn btn-info" href="?{% url_replace page=page_obj.previous_page_number %}">&laquo;</a></li>
+        <li><a class="prev btn btn-info" href="?{% url_querystring_replace page=page_obj.previous_page_number %}">&laquo;</a></li>
     {% else %}
         <li class="disabled"><span>&laquo;</span></li>
     {% endif %}
@@ -12,12 +12,12 @@
         {% if pc == 0 %}
             <li class="disabled"><span>...</span></li>
         {% else %}
-            <li class="{% if pc == page_obj.number %} active{% endif %}"><a href="?{% url_replace page=pc %}">{{ pc }}</a></li>
+            <li class="{% if pc == page_obj.number %} active{% endif %}"><a href="?{% url_querystring_replace page=pc %}">{{ pc }}</a></li>
         {% endif %}
     {% endfor %}
 
     {% if page_obj.has_next %}
-        <li><a class="next btn btn-info" href="?{% url_replace page=page_obj.next_page_number %}">&raquo;</a></li>
+        <li><a class="next btn btn-info" href="?{% url_querystring_replace page=page_obj.next_page_number %}">&raquo;</a></li>
     {% else %}
         <li class="disabled"><span>&raquo;</span></li>
     {% endif %}

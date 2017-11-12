@@ -36,10 +36,10 @@
       <div class="navbar-btn navbar-right">
         <a class="btn btn-default"
           {% if only_last == "1" %}
-            href="/_plugin/globalhistory/0/?{% url_replace %}">
+            href="/_plugin/globalhistory/0/?{% url_querystring_replace %}">
             {% trans "Show all revisions of all articles" %}
           {% else %}
-            href="/_plugin/globalhistory/1/?{% url_replace %}">
+            href="/_plugin/globalhistory/1/?{% url_querystring_replace %}">
             {% trans "Show last revision of every article" %}
           {% endif %}
         </a>
