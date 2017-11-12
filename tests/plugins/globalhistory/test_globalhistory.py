@@ -108,3 +108,22 @@ class GlobalhistoryTests(RequireRootArticleMixin, ArticleWebTestUtils, DjangoCli
         )
         response = self.c.get(url1)
         self._assertRegex(response.rendered_content, expected)
+
+        # Filter by article title
+        url = reverse('wiki:globalhistory', kwargs={'only_last': '0'}) + '?q=TestHistory'
+        response = self.c.get(url)
+        self.assertContains(response, 'List of all <strong>3 changes</strong>')
+
+        url = reverse('wiki:globalhistory', kwargs={'only_last': '1'}) + '?q=TestHistory'
+        response = self.c.get(url)
+        self.assertContains(response, 'List of all <strong>2 changes</strong>')
+
+        # Filter by comment
+        url = reverse('wiki:globalhistory', kwargs={'only_last': '0'}) + '?q=Comment 2'
+        response = self.c.get(url)
+        self.assertContains(response, 'List of all <strong>1 changes</strong>')
+
+        # Filter by user
+        url = reverse('wiki:globalhistory', kwargs={'only_last': '0'}) + '?q=admin'
+        response = self.c.get(url)
+        self.assertContains(response, 'List of all <strong>1 changes</strong>')

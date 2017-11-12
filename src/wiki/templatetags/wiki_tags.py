@@ -12,6 +12,7 @@ from django.template.defaultfilters import striptags
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
 from six.moves import filter
+from urllib.parse import urlencode
 from wiki import models
 from wiki.conf import settings
 from wiki.core.plugins import registry as plugin_registry
@@ -197,3 +198,9 @@ def wiki_settings(name):
 @register.filter
 def starts_with(value, arg):
     return value.startswith(arg)
+
+@register.simple_tag(takes_context=True)
+def url_replace(context, **kwargs):
+    query = context['request'].GET.dict()
+    query.update(kwargs)
+    return urlencode(query)
