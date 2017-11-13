@@ -12,14 +12,10 @@ from django.template.defaultfilters import striptags
 from django.utils.http import urlquote
 from django.utils.safestring import mark_safe
 from six.moves import filter
+from six.moves.urllib.parse import urlencode
 from wiki import models
 from wiki.conf import settings
 from wiki.core.plugins import registry as plugin_registry
-
-try:
-    from urllib.parse import urlencode
-except ImportError:
-    from urllib import urlencode
 
 register = template.Library()
 
